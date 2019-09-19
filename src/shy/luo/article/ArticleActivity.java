@@ -1,6 +1,5 @@
 package shy.luo.article;
  
-import shy.luo.providers.articles.Articles;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

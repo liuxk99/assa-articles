@@ -1,8 +1,7 @@
 package shy.luo.article;
  
 import java.util.LinkedList;
- 
-import shy.luo.providers.articles.Articles;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -24,7 +23,7 @@ public class ArticlesAdapter {
                 resolver = context.getContentResolver();
         }
  
-        public long insertArticle(Article article) {
+        public long insertArticle(ArticleInfo article) {
                 ContentValues values = new ContentValues();
                 values.put(Articles.TITLE, article.getTitle());
                 values.put(Articles.ABSTRACT, article.getAbstract());
@@ -36,7 +35,7 @@ public class ArticlesAdapter {
                 return Integer.valueOf(itemId).longValue();
         }
  
-        public boolean updateArticle(Article article) {
+        public boolean updateArticle(ArticleInfo article) {
                 Uri uri = ContentUris.withAppendedId(Articles.CONTENT_URI, article.getId());
  
                 ContentValues values = new ContentValues();
@@ -57,8 +56,8 @@ public class ArticlesAdapter {
                 return count > 0;
         }
  
-        public LinkedList<Article> getAllArticles() {
-                LinkedList<Article> articles = new LinkedList<Article>();
+        public LinkedList<ArticleInfo> getAllArticles() {
+                LinkedList<ArticleInfo> articles = new LinkedList<ArticleInfo>();
  
                 String[] projection = new String[] {
                         Articles.ID,
@@ -75,7 +74,7 @@ public class ArticlesAdapter {
                                 String abs = cursor.getString(2);
                                 String url = cursor.getString(3);
  
-                                Article article = new Article(id, title, abs, url);
+                                ArticleInfo article = new ArticleInfo(id, title, abs, url);
                                 articles.add(article);
                         } while(cursor.moveToNext());
                 }
@@ -97,7 +96,7 @@ public class ArticlesAdapter {
                 return count;
         }
  
-        public Article getArticleById(int id) {
+        public ArticleInfo getArticleById(int id) {
                 Uri uri = ContentUris.withAppendedId(Articles.CONTENT_URI, id);
  
                 String[] projection = new String[] {
@@ -119,10 +118,10 @@ public class ArticlesAdapter {
                 String abs = cursor.getString(2);
                 String url = cursor.getString(3);
  
-                return new Article(id, title, abs, url);
+                return new ArticleInfo(id, title, abs, url);
         }
  
-        public Article getArticleByPos(int pos) {
+        public ArticleInfo getArticleByPos(int pos) {
                 Uri uri = ContentUris.withAppendedId(Articles.CONTENT_POS_URI, pos);
  
                 String[] projection = new String[] {
@@ -142,6 +141,6 @@ public class ArticlesAdapter {
                 String abs = cursor.getString(2);
                 String url = cursor.getString(3);
  
-                return new Article(id, title, abs, url);
+                return new ArticleInfo(id, title, abs, url);
         }
 }

@@ -1,12 +1,12 @@
 package shy.luo.article;
  
-public class Article {
+public class ArticleInfo {
         private int id;
         private String title;
         private String abs;
         private String url;
  
-        public Article(int id, String title, String abs, String url) {
+        public ArticleInfo(int id, String title, String abs, String url) {
                 this.id = id;
                 this.title = title;
                 this.abs = abs;

@@ -1,6 +1,5 @@
 package shy.luo.article;
  
-import shy.luo.providers.articles.Articles;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -69,7 +68,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
         public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 Intent intent = new Intent(this, ArticleActivity.class);
  
-                Article article = aa.getArticleByPos(pos);
+                ArticleInfo article = aa.getArticleByPos(pos);
                 intent.putExtra(Articles.ID, article.getId());
                 intent.putExtra(Articles.TITLE, article.getTitle());
                 intent.putExtra(Articles.ABSTRACT, article.getAbstract());
@@ -89,7 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
                                 String abs = data.getStringExtra(Articles.ABSTRACT);
                                 String url = data.getStringExtra(Articles.URL);
  
-                                Article article = new Article(-1, title, abs, url);
+                                ArticleInfo article = new ArticleInfo(-1, title, abs, url);
                                 aa.insertArticle(article);
                         }
  
@@ -105,7 +104,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
                                         String abs = data.getStringExtra(Articles.ABSTRACT);
                                         String url = data.getStringExtra(Articles.URL);
  
-                                        Article article = new Article(id, title, abs, url);
+                                        ArticleInfo article = new ArticleInfo(id, title, abs, url);
                                         aa.updateArticle(article);
                                 } else if(action == ArticleActivity.DELETE_ARTICLE)     {
                                         int id = data.getIntExtra(Articles.ID, -1);
@@ -155,7 +154,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Adap
  
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
-                        Article article = (Article)getItem(position);
+                        ArticleInfo article = (ArticleInfo)getItem(position);
  
                         if (convertView == null) {
                                 convertView = inflater.inflate(R.layout.item, null);

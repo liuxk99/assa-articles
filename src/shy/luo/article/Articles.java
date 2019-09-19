@@ -1,4 +1,4 @@
-package shy.luo.providers.articles;
+package shy.luo.article;
  
 import android.net.Uri;
  
